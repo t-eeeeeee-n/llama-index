@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  python:
+    container_name: python-gpt-custom-engine-container
+    image: "python-gpt-custom-engine-image"
+    build:
+      context: .
+      dockerfile: ./container/Dockerfile
+    working_dir: /var/www/app
+    volumes:
+      - ./src:/var/www/app
+      - ./container/requirements.txt:/tmp/requirements.txt
+    tty: true
+    env_file:
+      - .env
